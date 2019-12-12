@@ -19,9 +19,11 @@ jobs:
         python-version: 3.7
     - name: Install dependencies
       run: |
+        apt update -y
+        apt upgrade -y
         python -m pip install --upgrade pip
-        sudo apt-get install libpcap-dev libpq-dev
-        sudo pip3 install pyldap
+        apt-get install libpcap-dev libpq-dev
+        pip3 install pyldap
         pip install -r requirements.txt
         
     #- name: Setup PostgreSQL
