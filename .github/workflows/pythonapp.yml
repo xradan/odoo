@@ -11,22 +11,22 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:      
-    - uses: actions/checkout@v1  
+    #- uses: actions/checkout@v1  
     
     #- name: Set up Python 3.7
      # uses: actions/setup-python@v1
       #with:
        # python-version: 3.7
     
-    - name: Merge forked original branch
-      uses: robotology/gh-action-nightly-merge@v1.2.0
-      with:
-        stable_branch: '13.0'
-        development_branch: 'k8s'
-        allow_ff: false
-        allow_forks: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+   # - name: Merge forked original branch
+     # uses: robotology/gh-action-nightly-merge@v1.2.0
+    #  with:
+     #   stable_branch: '13.0'
+      #  development_branch: 'k8s'
+       # allow_ff: false
+        #allow_forks: true
+      #env:
+       # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
     
     #- name: Install dependencies
@@ -71,6 +71,7 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           cd odoo
-          git fetch --all
-          git checkout k8s
+          git fetch upstream
+          git merge upstream/13.0
           git pull origin k8s
+          git merge 13.0
