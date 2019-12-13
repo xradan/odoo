@@ -11,6 +11,20 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
+    - name: Deploy to Prod 
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          whoami
+          ls
+          pwd
+          
+          
+          
     - uses: actions/checkout@v1  
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
