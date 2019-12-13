@@ -10,21 +10,7 @@ jobs:
 
     runs-on: ubuntu-18.04
 
-    steps:
-    - name: Deploy to Prod 
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
-        script: |
-          whoami
-          ls
-          pwd
-          
-          
-          
+    steps:      
     - uses: actions/checkout@v1  
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
@@ -74,3 +60,16 @@ jobs:
  #     run: |
    #     pip install pytest
  #       pytest
+
+    - name: Deploy to Prod 
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: |
+          cd odoo
+          git fetch --all
+          git checkout k8s
+          git pull origin k8s
