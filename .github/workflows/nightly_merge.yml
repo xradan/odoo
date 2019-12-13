@@ -1,0 +1,25 @@
+name: 'Nightly Merge'
+
+on:
+  push:
+    branches: 
+      - "k8s"
+  
+
+jobs:
+  nightly-merge:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Nightly Merge
+      uses: robotology/gh-action-nightly-merge@v1.2.0
+      with:
+        stable_branch: '13.0'
+        development_branch: 'k8s'
+        allow_ff: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
