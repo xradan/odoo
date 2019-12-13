@@ -23,7 +23,7 @@ jobs:
         stable_branch: '13.0'
         development_branch: 'k8s'
         allow_ff: false
-        aullow_forks: true
+        allow_forks: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
