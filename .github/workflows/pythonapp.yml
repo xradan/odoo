@@ -16,7 +16,18 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
-      
+    
+    - name: Merge forked original branch
+      uses: robotology/gh-action-nightly-merge@v1.2.0
+      with:
+        stable_branch: '13.0'
+        development_branch: 'k8s'
+        allow_ff: false
+        aullow_forks: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
